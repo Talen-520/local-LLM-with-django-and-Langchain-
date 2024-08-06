@@ -1,6 +1,6 @@
 # Connect local LLM with Django
 
-## Clone this repository, do as following
+## Installation
 
 ### 1. create virtual environment
 ```
@@ -16,14 +16,9 @@ python -m venv venv
 ```
 pip install -r requirements.txt
 ```
-### start your server
-```
-cd .\langTrainBackend\
-python manage.py runserver
-```
 
 
-### install ollama
+### 4. install ollama
 
 [Download](https://ollama.com/download/)
 ### run ollama
@@ -50,6 +45,13 @@ ollama run qwen2:72b
 ollama pull llama3.1
 
 ```
+
+### run application
+```
+cd .\langTrainBackend\
+python manage.py runserver
+```
+
 
 ### Example of Input and Ouput 
 
