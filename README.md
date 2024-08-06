@@ -34,6 +34,9 @@ You need to keep this service running whenever you are using [ollama](https://gi
 
 
 ### pull model checkpoint
+> [!NOTE]
+> You only need pull one model for each URL endpoint, for example, in order to access http://127.0.0.1:8000/api/llama31/
+> run  ollama pull llama3.1
 
 ```
 # 7b model, system prompt not supported, 4.4 GB
@@ -48,29 +51,34 @@ ollama pull llama3.1
 
 ```
 
-### test endpoint with RAW JSON INPUT - you need openai Key for this endpoint
+### Example of Input and Ouput 
+
+get access
 ```
-http://127.0.0.1:8000/api/openai/
+URL
+https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=<firebase Web ID>
+Body
 {
-    
-    headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      }
+  "email": "test@gmail.com",
+  "password": "test123",
+  "returnSecureToken": true
+}
+output
+{
+    "kind": "identitytoolkit#VerifyPasswordResponse",
+    "localId": <userID>,
+    "email": <email>,
+    "displayName": <name>,
+    "idToken": <idToken>,
+    "registered": true,
+    "refreshToken": <user refresh Token>,
+    "expiresIn": "3600"
+}
 
-    "input": "Hello"
-    }
-    
 ```
-
-### test endpoint with RAW JSON INPUT - you need install ollama and Qwen2
+### pass idToken to requested URL
 ```
-http://127.0.0.1:8000/api/qwen/
-{"input": "Hello"}
-```
-
-### test endpoint with RAW JSON INPUT - you need install ollama and llama3 as step above
-```
+URL
 http://127.0.0.1:8000/api/llama3/
 {
     
@@ -81,11 +89,42 @@ http://127.0.0.1:8000/api/llama3/
 
     "input": "Hello"
     }
-```
 
-output format:
-```
+output
 {"response": string, 
  "time": string, 
  "tokens": int}
 ```
+
+## Javascript 
+### post request to Firebase auth 
+'''
+fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=<your_web_api_key>', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    email: 'test@gmail.com',
+    password: 'test123',
+    returnSecureToken: true
+  })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+'''
+
+### Example fetch request for LLM response
+'''
+    const response = await fetch('http://127.0.0.1:8000/api/llama31/', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ input: input })
+    });
+
+'''
+
