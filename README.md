@@ -1,6 +1,4 @@
-# LangTrain
-LangTrain your Mandarin AI teacher
-
+# Connect local LLM with Django
 
 ## Clone this repository, do as following
 
@@ -18,7 +16,7 @@ python -m venv venv
 ```
 pip install -r requirements.txt
 ```
-### run backend service
+### start your server
 ```
 cd .\langTrainBackend\
 python manage.py runserver
@@ -41,10 +39,10 @@ You need to keep this service running whenever you are using [ollama](https://gi
 # 7b model, system prompt not supported, 4.4 GB
 ollama run qwen2:7b
 
-# support system prompt,size 41 GB this is optional
+# 72b model support system prompt, size 41 GB this is optional
 ollama run qwen2:72b
 
-# llama3 might not good for chinese language, see documentation 
+# llama3.1 most advanced open source model, for langchain implementation see documentation 
 # https://python.langchain.com/v0.1/docs/integrations/chat/ollama/
 ollama pull llama3.1
 
