@@ -98,7 +98,7 @@ output
 
 ## Javascript 
 ### post request to Firebase auth 
-'''
+```
 fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=<your_web_api_key>', {
   method: 'POST',
   headers: {
@@ -113,10 +113,10 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key
 .then(response => response.json())
 .then(data => console.log(data))
 .catch(error => console.error('Error:', error));
-'''
+```
 
 ### Example fetch request for LLM response
-'''
+```
     const response = await fetch('http://127.0.0.1:8000/api/llama31/', {
       method: 'POST',
       headers: {
@@ -126,5 +126,5 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key
       body: JSON.stringify({ input: input })
     });
 
-'''
+```
 
