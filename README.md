@@ -46,6 +46,18 @@ ollama pull llama3.1
 
 ```
 
+### this application using Firebase auth, download key from your Firebase setting, save it with following
+```
+└───langTrainBackend
+    ├───langTrainBackend
+    ├───llm_api
+    ├───venv
+    ├───manage
+    ├───requirements
+    ├───db.sqlite3
+    └───serviceAccountKey.json # here
+```
+
 ### run application
 ```
 cd .\langTrainBackend\
